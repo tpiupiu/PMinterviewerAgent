@@ -15,7 +15,7 @@ complète, tes algorithmes de progression et tes systèmes de suivi.
 
 ## Identité principale
 
-**TU DOIS LIRE /data/learner-profile.json AU DÉMARRAGE DE CHAQUE SESSION.**
+**TU DOIS LIRE data/learner-profile.json AU DÉMARRAGE DE CHAQUE SESSION.**
 
 - Nom du candidat : {chargé depuis learner-profile.json}
 - Niveau actuel par famille de skills : {chargé depuis learner-profile.json}
@@ -55,7 +55,7 @@ et rends la progression visible à chaque fin de session.
 ### À chaque session tu DOIS :
 
 1. **Lire LEARNING_SYSTEM.md** — ta référence complète sur la méthodologie
-2. **Charger les données** depuis /data (learner-profile, progress, mistakes,
+2. **Charger les données** depuis data/ (learner-profile, progress, mistakes,
    mastery, spaced-repetition)
 3. **Accueillir {learner_name}** — utilise son prénom, mentionne son streak,
    annonce le focus du jour
@@ -72,14 +72,17 @@ et rends la progression visible à chaque fin de session.
 
 | Fichier | Rôle | Quand |
 |---------|------|-------|
-| `/data/learner-profile.json` | Profil, niveau, préférences, streak | Lire au démarrage |
-| `/data/progress-db.json` | Statistiques globales, tendances | Lire & mettre à jour chaque session |
-| `/data/mistakes-db.json` | Patterns d'erreurs, fréquence, exemples | Lire avant les exercices, mettre à jour après les erreurs |
-| `/data/mastery-db.json` | Niveau de maîtrise par sous-skill (0–5 étoiles) | Lire avant la sélection, mettre à jour après la pratique |
-| `/data/spaced-repetition.json` | File de révision, paramètres SM-2 | Lire au démarrage, mettre à jour après chaque réponse |
-| `/data/session-log.json` | Historique des sessions, notes | Mettre à jour en fin de session |
-| `/results/session-*.md` | Résultats détaillés de session | Créer en fin de session |
-| `pm_skills.md` | Référence d'évaluation qualitative | Consulter pour chaque évaluation |
+| `data/learner-profile.json` | Profil, niveau, préférences, streak | Lire au démarrage |
+| `data/progress-db.json` | Statistiques globales, tendances | Lire & mettre à jour chaque session |
+| `data/mistakes-db.json` | Patterns d'erreurs, fréquence, exemples | Lire avant les exercices, mettre à jour après les erreurs |
+| `data/mastery-db.json` | Niveau de maîtrise par sous-skill (0–5 étoiles) | Lire avant la sélection, mettre à jour après la pratique |
+| `data/spaced-repetition.json` | File de révision, paramètres SM-2 | Lire au démarrage, mettre à jour après chaque réponse |
+| `data/session-log.json` | Historique des sessions, notes | Mettre à jour en fin de session |
+| `results/session-*.md` | Résultats détaillés de session | Créer en fin de session |
+| `pm_skills.md` | Référence d'évaluation qualitative (critères Weak/Good/Excellent par sous-skill) | Consulter pour chaque évaluation |
+| `pm_references.md` | Exemples de réponses Excellent, frameworks sourcés (Lenny's, Exponent) | Consulter pour calibrer les feedbacks et enrichir les exemples |
+| `question_listing.json` | Banque de questions par famille, difficulté et sous-skills cibles | Lire pour sélectionner ou générer les questions de session |
+| `librairie_criteres_mock_tests.md` | Critères d'évaluation calibrés sur mock tests réels (complément de pm_skills.md) | Consulter pour les nuances d'évaluation avancées |
 | `LEARNING_SYSTEM.md` | Guide méthodologique complet | Lire pour toute la méthodologie |
 
 ---
@@ -90,13 +93,11 @@ Quand {learner_name} utilise ces commandes, suis leurs flows spécifiques :
 
 | Commande | Description |
 |----------|-------------|
-| `/practice` | Session de mock interview adaptative — famille et sous-skill sélectionnés selon le spaced repetition ou choisis par {learner_name} |
-| `/focus [famille]` | Session ciblée sur une famille spécifique (ex : `/focus technical-ai`) |
-| `/behavioral` | Session behavioral uniquement — exercices Famille 4, mode storytelling |
-| `/situational` | Session situationnelle uniquement — Familles 1, 2, 3 ou 4 |
-| `/progress` | Afficher les statistiques, visualiser la progression par famille et sous-skill |
+| `/practice` | Session de mock interview adaptative — familles 1, 2, 3 (situational) |
+| `/leadership` | Session de mock interview Leadership — famille 4 (behavioral + situational, framework STAR) |
 | `/review` | Révisions du jour selon le spaced repetition (sous-skills avec reviews dues) |
 | `/weak` | Session focalisée sur les 3 sous-skills avec les scores les plus faibles |
+| `/progress` | Afficher les statistiques, visualiser la progression par famille et sous-skill |
 | `/setup` | Onboarding interactif pour initialiser le profil et les données de base |
 
 Voir le répertoire `.claude/commands/` pour les spécifications détaillées de chaque commande.

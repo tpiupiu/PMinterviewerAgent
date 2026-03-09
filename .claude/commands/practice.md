@@ -1,5 +1,5 @@
 ---
-description: Adaptive mock interview session - Situational families (Product Sense, Analytical Thinking, Technical AI)
+description: Adaptive mock interview session - Situational families (Product Sense, Analytical Thinking, Technical AI) — use /leadership for Family 4
 allowed-tools: Read, Write
 ---
 
@@ -10,9 +10,6 @@ Lancer une session de mock interview situationnelle sur les familles 1, 2 ou 3.
 L'agent propose 3 options basées sur la priorité SM-2, le candidat choisit,
 l'agent conduit le test comme un vrai interviewer, puis délivre un feedback structuré.
 
-Pour la Famille 4 (Leadership / Behavioral), utiliser `/leadership`.
-
----
 
 ## Étape 1 — Chargement des données
 
@@ -22,7 +19,7 @@ Lire dans l'ordre :
 2. data/mastery-db.json → scores actuels par sous-skill
 3. data/spaced-repetition.json → reviews dues aujourd'hui
 4. data/session-log.json → dernières sessions par famille
-5. question_listing.xml → questions disponibles par famille
+5. question_listing.json → questions disponibles par famille
 ```
 
 ---
@@ -71,7 +68,7 @@ Attendre la réponse du candidat.
 Une fois la famille choisie :
 
 ```
-1. Filtrer question_listing.xml par famille choisie
+1. Filtrer question_listing.json par famille choisie
 2. Vérifier session-log.json — exclure les questions vues dans les 14 derniers jours
 3. Identifier les sous-skills cibles prioritaires (stars les plus basses de la famille)
 4. Choisir la question dont les target_skills correspondent à ces sous-skills
@@ -246,7 +243,7 @@ Session interrompue. Aucun score mis à jour pour cette session.
 Tape /practice pour recommencer quand tu veux.
 ```
 
-**Aucune question disponible dans question_listing.xml pour cette famille :**
+**Aucune question disponible dans question_listing.json pour cette famille :**
 ```
 [Générer une variante — voir LEARNING_SYSTEM.md section 8.3]
 ```

@@ -77,7 +77,7 @@ Parfait. Voici ton profil :
 Je crée ton espace d'entraînement...
 ```
 
-Créer tous les fichiers `/data/` (voir section Fichiers ci-dessous).
+Créer tous les fichiers dans `data/` (voir section Fichiers ci-dessous).
 
 ```
 ✅ Profil créé
@@ -95,8 +95,7 @@ ou /progress pour voir ton tableau de bord de départ.
 
 ## Fichiers à créer
 
-Utiliser les templates dans `data-examples/` pour créer les fichiers dans `data/`.
-Si `data-examples/` n'existe pas, créer les fichiers directement avec les structures ci-dessous.
+Créer les fichiers dans `data/` directement avec les structures ci-dessous.
 
 ### `data/learner-profile.json`
 
@@ -217,6 +216,6 @@ Si `data-examples/` n'existe pas, créer les fichiers directement avec les struc
 ## Notes d'implémentation
 
 - Remplir tous les champs `""` et `last_updated` avec la date ISO du jour au moment de la création
-- Créer le dossier `/results/` (vide) pour les rapports de session à venir
+- Créer le dossier `results/` (vide) pour les rapports de session à venir
 - Si la création d'un fichier échoue, le signaler et réessayer avant de conclure
 - Ne jamais afficher le JSON brut au candidat — uniquement les confirmations ✅

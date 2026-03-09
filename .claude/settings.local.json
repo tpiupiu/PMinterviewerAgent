@@ -1,9 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Read(//home/ubuntu/.ssh/**)",
+      "Read(/home/ubuntu/.ssh/**)",
       "Bash(ssh -T git@github.com)",
-      "Bash(git push -u origin main 2>&1)"
+      "Bash(git push -u origin main 2>&1)",
+      "Bash(cp:*)"
     ]
   }
 }

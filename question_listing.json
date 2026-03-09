@@ -1,0 +1,1132 @@
+{
+  "_meta": {
+    "description": "Banque de questions PM pour le coach d'entretien Claude Code",
+    "source": "Lewis Lin's PM Question Bank",
+    "reuse_rule_days": 14,
+    "families": [
+      "product-sense",
+      "analytical-thinking",
+      "technical-ai",
+      "leadership"
+    ],
+    "modes": [
+      "situational",
+      "behavioral"
+    ],
+    "difficulties": [
+      "easy",
+      "medium",
+      "hard"
+    ],
+    "technical_ai_note": "Famille à alimenter manuellement — voir format ci-dessous",
+    "technical_ai_template": {
+      "id": "ai00X",
+      "family": "technical-ai",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "[Question]",
+      "target_skills": [
+        "3.X",
+        "3.Y"
+      ],
+      "notes": "[Notes internes pour l'agent]"
+    }
+  },
+  "questions": [
+    {
+      "id": "ps001",
+      "family": "product-sense",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "Design a video streaming platform for senior citizens (65+).",
+      "target_skills": [
+        "transversal",
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "notes": "Contrainte de segment explicite. Teste si le candidat segmente à l'intérieur\n    du segment — tous les seniors ne sont pas pareils. Attention aux clichés d'accessibilité."
+    },
+    {
+      "id": "ps002",
+      "family": "product-sense",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "Build a video product for Slack.",
+      "target_skills": [
+        "transversal",
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "notes": "Écosystème B2B, asynchrone, contexte workplace. Piège : proposer une solution\n    générique sans ancrer dans les contraintes Slack (équipes, canaux, intégrations)."
+    },
+    {
+      "id": "ps003",
+      "family": "product-sense",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "Design an ATM for your local airport.",
+      "target_skills": [
+        "transversal",
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "notes": "Design physique + digital. Besoins très différents selon le type de voyageur.\n    Le contexte \"airport\" est un fort signal sur les pain points à explorer."
+    },
+    {
+      "id": "ps004",
+      "family": "product-sense",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "Improve the worst booking experience for Delta airlines.",
+      "target_skills": [
+        "transversal",
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "notes": "\"Worst experience\" oriente vers le problem identification.\n    Teste si le candidat structure le journey complet avant de choisir un problème."
+    },
+    {
+      "id": "ps005",
+      "family": "product-sense",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "Build something for blue collared workers.",
+      "target_skills": [
+        "transversal",
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "notes": "Question zero-to-one avec segment sous-représenté en tech.\n    Teste la capacité à sortir des personas habituels (knowledge workers)."
+    },
+    {
+      "id": "ps006",
+      "family": "product-sense",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "Design a product to improve the quality of life of elderly people.",
+      "target_skills": [
+        "transversal",
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "notes": "Scope très large — teste la capacité à cadrer rapidement.\n    Piège : rester trop générique sans choisir un sous-segment et un problème précis."
+    },
+    {
+      "id": "ps007",
+      "family": "product-sense",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "Build a set of features that help users be less distracted on Microsoft Edge.",
+      "target_skills": [
+        "transversal",
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "notes": "Contrainte comportementale précise (distraction). Teste la profondeur\n    du problem identification : quand, pourquoi, quel type de distraction ?"
+    },
+    {
+      "id": "ps008",
+      "family": "product-sense",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "Design a product for airport travelers.",
+      "target_skills": [
+        "transversal",
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "notes": "Segment large à décomposer. Nombreux sous-segments possibles\n    (transit, business, leisure, fréquent). Force un choix de focus."
+    },
+    {
+      "id": "ps009",
+      "family": "product-sense",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "How would you improve the grocery shopping experience?",
+      "target_skills": [
+        "transversal",
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "notes": "Question d'amélioration produit sur un domaine familier.\n    Teste la finesse du journey mapping — online vs offline, planification vs achat spontané."
+    },
+    {
+      "id": "ps010",
+      "family": "product-sense",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "Design a product to reduce the wait times for rides at Disney World.",
+      "target_skills": [
+        "transversal",
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "notes": "Contexte physique avec forte contrainte opérationnelle.\n    Segmentation riche possible : familles, enfants, adultes, groupes. Piège : solution purement tech."
+    },
+    {
+      "id": "ps011",
+      "family": "product-sense",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "Design an Ads product for Venmo.",
+      "target_skills": [
+        "transversal",
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "notes": "Tension forte entre expérience utilisateur et monétisation.\n    Teste la capacité à équilibrer les intérêts des deux côtés de l'écosystème."
+    },
+    {
+      "id": "ps012",
+      "family": "product-sense",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "If AirBnB customers only booked their stays 24hrs in advance,\n    how would you design AirBnB differently from what it is today?",
+      "target_skills": [
+        "transversal",
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "notes": "Question de re-design avec contrainte imposée. Teste le raisonnement\n    first-principles : qu'est-ce qui change dans les besoins si la planification disparaît ?"
+    },
+    {
+      "id": "ps013",
+      "family": "product-sense",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "How would you improve post-dispatch experience for Lyft?",
+      "target_skills": [
+        "transversal",
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "notes": "Scope limité à post-dispatch. Teste si le candidat respecte le scope\n    ou le déborde. Deux ecosystems players : rider et driver."
+    },
+    {
+      "id": "ps014",
+      "family": "product-sense",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "Improve the post booking experience for Ticketmaster.",
+      "target_skills": [
+        "transversal",
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "notes": "Scope temporel précis (post-booking). Journey riche :\n    confirmation, attente, rappels, accès, expérience le jour J."
+    },
+    {
+      "id": "ps015",
+      "family": "product-sense",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "How would you improve discoverability at AirBnB?",
+      "target_skills": [
+        "transversal",
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "notes": "Focus sur une étape du funnel : la découverte. Teste la précision\n    du problem identification autour d'une friction connue."
+    },
+    {
+      "id": "ps016",
+      "family": "product-sense",
+      "mode": "situational",
+      "difficulty": "hard",
+      "text": "You're hired as the CPO of a property listing website.\n    What's your strategy and how do you measure success?",
+      "target_skills": [
+        "transversal",
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "notes": "Question stratégique + métriques. Nécessite de combiner Product Sense\n    et Analytical Thinking. Teste la vision long-terme et la priorisation."
+    },
+    {
+      "id": "ps017",
+      "family": "product-sense",
+      "mode": "situational",
+      "difficulty": "hard",
+      "text": "You're hired as a PM at Etsy to 3X revenue in the next 5 years.\n    What's your strategy to support monetization? Which customers and problems\n    would you focus on? What would you build as your MVP?",
+      "target_skills": [
+        "transversal",
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "notes": "Question de croissance avec contrainte de revenue. Marketplace B2C/B2B.\n    Teste la capacité à relier product decisions à des business outcomes."
+    },
+    {
+      "id": "ps018",
+      "family": "product-sense",
+      "mode": "situational",
+      "difficulty": "hard",
+      "text": "Should Google expand to emerging countries for home services\n    or double down on existing countries?",
+      "target_skills": [
+        "transversal",
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "notes": "Question stratégique binaire. Teste le raisonnement sur les tradeoffs\n    de croissance, la segmentation géographique, et l'allocation de ressources."
+    },
+    {
+      "id": "ps019",
+      "family": "product-sense",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "Imagine you are the PM for Google Photos. Design the Year-in-review feature.",
+      "target_skills": [
+        "transversal",
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "notes": "Feature précise à concevoir. Contexte émotionnel fort.\n    Teste la finesse du problem identification : qu'est-ce qu'une bonne rétrospective ?"
+    },
+    {
+      "id": "ps020",
+      "family": "product-sense",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "OpenAI has created an AI that lets humans talk to animals.\n    What would you build and why?",
+      "target_skills": [
+        "transversal",
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "notes": "Question créative / spéculative. Teste la capacité à trouver un segment\n    crédible et un problème réel malgré une prémisse inhabituele."
+    },
+    {
+      "id": "ps021",
+      "family": "product-sense",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "Design LinkedIn for Students.",
+      "target_skills": [
+        "transversal",
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "notes": "Adaptation d'un produit existant à un nouveau segment.\n    Tensions à explorer : réseau peu développé, manque d'expérience, transition vers l'emploi."
+    },
+    {
+      "id": "ps022",
+      "family": "product-sense",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "You are a PM at Tesla. Explore Fitness.",
+      "target_skills": [
+        "transversal",
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "notes": "Question zero-to-one dans un espace adjacent au core business Tesla.\n    Teste la capacité à trouver un angle crédible qui tire parti des forces Tesla (data, mobilité)."
+    },
+    {
+      "id": "ps023",
+      "family": "product-sense",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "You are a PM at Waymo. Design a solution to improve the development velocity.",
+      "target_skills": [
+        "transversal",
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "notes": "Utilisateur interne (engineers, developers). Teste la capacité à appliquer\n    le framework Product Sense à un produit B2B/internal tool."
+    },
+    {
+      "id": "ps024",
+      "family": "product-sense",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "Build a Robinhood product for Insurance.",
+      "target_skills": [
+        "transversal",
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "notes": "Analogie produit à déconstruire puis réappliquer à un nouveau domaine.\n    Teste la compréhension de ce qui fait le succès de Robinhood (democratization, simplicity)."
+    },
+    {
+      "id": "at001",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "You're a PM at Meta. Define success metrics and goals for Meta AI Chatbot on IG DM.",
+      "target_skills": [
+        "transversal",
+        "2.1",
+        "2.2"
+      ],
+      "notes": "NSM complexe : deux ecosystems players (users + AI agent).\n    Piège : confondre les métriques d'adoption (DAU) avec celles de valeur créée."
+    },
+    {
+      "id": "at002",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "You're a PM at Meta. What are the goals of Meta Pay?\n    How would you measure success of Meta Pay?",
+      "target_skills": [
+        "transversal",
+        "2.1",
+        "2.2"
+      ],
+      "notes": "Produit financier dans l'écosystème Meta. Tension entre adoption,\n    transaction volume et trust. Guardrail metrics critiques (fraude, erreurs)."
+    },
+    {
+      "id": "at003",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "You're a PM at Meta building a video conferencing platform.\n    Why should the product build, what goals would you set, how would you measure success?",
+      "target_skills": [
+        "transversal",
+        "2.1",
+        "2.2"
+      ],
+      "notes": "Question en 3 parties : rationale + goal-setting + metrics.\n    Teste la capacité à construire un throughline cohérent entre les 3."
+    },
+    {
+      "id": "at004",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "You're a PM at Meta. Build a platform for users to enjoy art.\n    Define goals and success metrics.",
+      "target_skills": [
+        "transversal",
+        "2.1",
+        "2.2"
+      ],
+      "notes": "Domaine subjectif (art). Teste la capacité à définir des métriques\n    sur quelque chose de difficile à quantifier. Piège : métriques trop vagues."
+    },
+    {
+      "id": "at005",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "Meta has an anti-scamming product, why should this be built,\n    how would you set goals and measure success?",
+      "target_skills": [
+        "transversal",
+        "2.1",
+        "2.2"
+      ],
+      "notes": "Produit de safety/trust. Les métriques de succès sont inverses :\n    on mesure ce qui diminue (scams detected, user reports). Guardrails : faux positifs."
+    },
+    {
+      "id": "at006",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "You are a PM at Netflix. You are building a new podcast product,\n    what would success metrics and goals look like?",
+      "target_skills": [
+        "transversal",
+        "2.1",
+        "2.2"
+      ],
+      "notes": "Nouveau produit audio dans un écosystème vidéo. Deux ecosystem players\n    clés : listeners et creators. NSM doit capturer les deux côtés."
+    },
+    {
+      "id": "at007",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "You're a PM for Instagram Reels. How do you measure success?",
+      "target_skills": [
+        "transversal",
+        "2.1",
+        "2.2"
+      ],
+      "notes": "Question classique Big Tech. Tension watch time vs social connections.\n    Guardrail : ne pas optimiser l'engagement au détriment du bien-être utilisateur."
+    },
+    {
+      "id": "at008",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "PM for Reels, goal and success metrics.",
+      "target_skills": [
+        "transversal",
+        "2.1",
+        "2.2"
+      ],
+      "notes": "Version condensée de at007 — plus de latitude pour structurer la réponse."
+    },
+    {
+      "id": "at009",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "You are a PM for a video conferencing product. Why should this be built,\n    how would you define goals and success metrics? Note that average attendance count\n    for meetings is more than 30 people. Is this a good or bad thing?",
+      "target_skills": [
+        "transversal",
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "notes": "La deuxième question introduit un tradeoff immédiat à analyser.\n    Teste la capacité à interpréter une métrique ambiguë (30 personnes : engagement ou réunionite ?)."
+    },
+    {
+      "id": "at010",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "Meta leading product \"Jobs\", which allows FB users to apply opened jobs,\n    launching in 3 months: how do we define goals and measure success?",
+      "target_skills": [
+        "transversal",
+        "2.1",
+        "2.2"
+      ],
+      "notes": "Marketplace biface (jobseekers + employers). Timing contraint (3 mois).\n    Teste la capacité à définir des métriques de lancement vs métriques de maturité."
+    },
+    {
+      "id": "at011",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "PM for verified accounts at Meta — why would we build this product?\n    What do you want to measure to evaluate this product and set goals?",
+      "target_skills": [
+        "transversal",
+        "2.1",
+        "2.2"
+      ],
+      "notes": "Produit de trust/identity. Deux populations : comptes vérifiés et utilisateurs\n    qui les consultent. Piège : mesurer uniquement le nombre de vérifications."
+    },
+    {
+      "id": "at012",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "You're PM for Zoom for Biz: Why to build? What is the goal?",
+      "target_skills": [
+        "transversal",
+        "2.1",
+        "2.2"
+      ],
+      "notes": "Contexte B2B. Teste la capacité à articuler un product rationale B2B\n    et des métriques adaptées (pas DAU mais seats, retention, NPS entreprise)."
+    },
+    {
+      "id": "at013",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "You're a PM at Meta Chatbot AI (Instagram). How would you measure success,\n    health and performance?",
+      "target_skills": [
+        "transversal",
+        "2.1",
+        "2.3"
+      ],
+      "notes": "Trois dimensions à couvrir : success (business), health (ecosystem),\n    performance (technique). Teste la capacité à ne pas conflater ces 3 niveaux."
+    },
+    {
+      "id": "at014",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "What goals and metrics would you pick for Uber and why?",
+      "target_skills": [
+        "transversal",
+        "2.1",
+        "2.2"
+      ],
+      "notes": "Marketplace triface : riders, drivers, Uber. NSM doit refléter\n    la valeur créée pour les 3 parties. Piège : se concentrer uniquement sur les riders."
+    },
+    {
+      "id": "at015",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "How would you measure success and northstar metric of FB notifications\n    (push and in-app)?",
+      "target_skills": [
+        "transversal",
+        "2.1",
+        "2.2"
+      ],
+      "notes": "Feature de notifications — tension entre engagement et annoyance.\n    Guardrail critique : opt-out rate, notification fatigue."
+    },
+    {
+      "id": "at016",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "Measure success for Facebook Jobs (hypothetical product).",
+      "target_skills": [
+        "transversal",
+        "2.1",
+        "2.2"
+      ],
+      "notes": "Marketplace emploi. Métriques des deux côtés : candidats et employeurs.\n    NSM doit capturer la valeur créée par la mise en relation réussie."
+    },
+    {
+      "id": "at017",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "New Launch of FB events — why did Meta build this?\n    Set goals and success metrics.",
+      "target_skills": [
+        "transversal",
+        "2.1",
+        "2.2"
+      ],
+      "notes": "Question en deux parties : product rationale + metrics.\n    Contexte de launch : métriques d'adoption vs métriques de valeur long-terme."
+    },
+    {
+      "id": "at018",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "You are a PM at Meta for Facebook Events.\n    How would you measure success?",
+      "target_skills": [
+        "transversal",
+        "2.1",
+        "2.2"
+      ],
+      "notes": "Trois ecosystem players : organisateurs, participants, annonceurs.\n    NSM doit capturer la valeur créée pour au moins les deux premiers."
+    },
+    {
+      "id": "at019",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "You are PM of Meta on verification, there were no verifications before,\n    you are proposing the concept of verifications for Facebook and Instagram,\n    success goals to measure, trade off.",
+      "target_skills": [
+        "transversal",
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "notes": "Question combinant metrics + tradeoff. Le tradeoff est explicitement demandé.\n    Piège : ne pas anticiper les effets négatifs (exclusion, coût de vérification)."
+    },
+    {
+      "id": "at020",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "hard",
+      "text": "You're thinking about putting Reels at the top of the Instagram app\n    instead of Stories. Is that a good idea?",
+      "target_skills": [
+        "2.3"
+      ],
+      "notes": "Pure tradeoff question. Référence directe au template Ben Erez.\n    Voir pm_references.md section 2.3 pour l'exemple de réponse Excellent."
+    },
+    {
+      "id": "at021",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "hard",
+      "text": "Trade-off: is it better to have 1mm users and 100 reels,\n    or 100 users and 1mm reels?",
+      "target_skills": [
+        "2.3",
+        "2.5"
+      ],
+      "notes": "Tradeoff quantitatif avec reasoning explicite attendu.\n    Teste la capacité à raisonner sur les effets de réseau et la densité de contenu."
+    },
+    {
+      "id": "at022",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "Q1) What are the Key Jobs to be Done, Pain Points identified today.\n    Move into defining Goals and Success Metrics for Users and for the Company.\n    Then moved into Strategic Pillars of the Roadmap.\n    Finally Prioritize and Discuss Trade-offs.",
+      "target_skills": [
+        "transversal",
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "notes": "Question multi-étapes qui couvre tout le flow AT.\n    À réserver pour les sessions avancées quand les sous-skills individuels sont solides."
+    },
+    {
+      "id": "at023",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "Walmart.com sales dropped in 2024. How will you respond to this situation?",
+      "target_skills": [
+        "2.4",
+        "2.5"
+      ],
+      "notes": "Root cause analysis pure. Décomposer par dimensions (géo, segment, catégorie,\n    plateforme) avant de générer des hypothèses. Piège : fixer sur une seule hypothèse."
+    },
+    {
+      "id": "at024",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "Conversion rate drops by 3 to 4%. Debug this.",
+      "target_skills": [
+        "2.4",
+        "2.5"
+      ],
+      "notes": "Debugging classique. Scope à clarifier d'abord : quel funnel, quelle période,\n    quelle plateforme. Puis décomposition et hypothèses simple → complexe."
+    },
+    {
+      "id": "at025",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "You are PM for Lyft. Lyft is launching self-driving cars in Palo Alto.\n    Due to 5 percent of checkout experience, also for the button.\n    Conversion rate drops by 3 to 4%. Debug this.",
+      "target_skills": [
+        "2.4",
+        "2.5"
+      ],
+      "notes": "Debugging avec contexte nouveau produit. Double signal à analyser :\n    baisse de conversion ET lancement concurrent. Teste la capacité à isoler les causes."
+    },
+    {
+      "id": "at026",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "Define goals for fb marketplace. FB ad PM wants to run ads on fb marketplace\n    how would you evaluate tradeoff? Listings are decreasing while transactions\n    are increasing, how do you determine the strategy for sequencing the work?",
+      "target_skills": [
+        "2.2",
+        "2.3",
+        "2.4"
+      ],
+      "notes": "Question complexe multi-parties. Le paradoxe listings↓/transactions↑\n    est un signal d'analyse intéressant. Teste le raisonnement sur les tensions métriques."
+    },
+    {
+      "id": "at027",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "How would you increase the number of people hired through LinkedIn Jobs?",
+      "target_skills": [
+        "2.2",
+        "2.3"
+      ],
+      "notes": "Objectif précis (hired, pas just applied). Teste la capacité à travailler\n    en arrière depuis l'outcome final vers les leading indicators actionnables."
+    },
+    {
+      "id": "at028",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "Increase Pinterest or Craigslist revenue 3x in 5 years.",
+      "target_skills": [
+        "2.2",
+        "2.3"
+      ],
+      "notes": "Question de croissance revenue avec choix de produit.\n    Teste la structuration d'une stratégie de croissance avec métriques associées."
+    },
+    {
+      "id": "at029",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "You are a PM at Delta airlines. Identify worst post-check out experiences\n    and improve them.",
+      "target_skills": [
+        "2.2",
+        "2.4"
+      ],
+      "notes": "Combinaison root cause + goal-setting. Journey post-checkout riche :\n    confirmation, check-in, boarding, bagages, expérience à bord."
+    },
+    {
+      "id": "at030",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "Improve the worst booking experience for an airline.",
+      "target_skills": [
+        "2.2",
+        "2.4"
+      ],
+      "notes": "Version générique de at029. Plus de latitude mais moins d'ancrage.\n    Teste la capacité à se donner ses propres contraintes."
+    },
+    {
+      "id": "at031",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "Improve the quality of Airbnb in 6 months.",
+      "target_skills": [
+        "2.2",
+        "2.3"
+      ],
+      "notes": "Contrainte temporelle (6 mois). \"Quality\" est intentionnellement vague —\n    teste la capacité à définir ce que quality signifie avant de mesurer."
+    },
+    {
+      "id": "at032",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "How would you improve the post-booking experience for an airline of your choice?",
+      "target_skills": [
+        "2.2",
+        "2.4"
+      ],
+      "notes": "Scope précis (post-booking). Journey à mapper avant de choisir un problème.\n    Le choix de l'airline dit quelque chose de la connaissance domaine du candidat."
+    },
+    {
+      "id": "at033",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "You're a PM at Ticketmaster. How would you improve the worst post booking experience?",
+      "target_skills": [
+        "2.2",
+        "2.4"
+      ],
+      "notes": "Contexte événementiel avec forte émotionalité.\n    Journey riche entre l'achat et l'événement. Piège : se concentrer uniquement sur le billet."
+    },
+    {
+      "id": "at034",
+      "family": "analytical-thinking",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "Improve ride quality for Lyft.",
+      "target_skills": [
+        "2.2",
+        "2.4"
+      ],
+      "notes": "\"Quality\" vague intentionnellement. Teste la définition préalable\n    de ce que quality signifie pour chaque ecosystem player (rider vs driver)."
+    },
+    {
+      "id": "ldr001",
+      "family": "leadership",
+      "mode": "behavioral",
+      "difficulty": "medium",
+      "text": "Tell me about a time you had to convince someone who disagreed.",
+      "target_skills": [
+        "4.1",
+        "4.5"
+      ],
+      "notes": "Influence sans autorité. Observer l'usage de \"je\" vs \"on\"\n    et si la conviction était réelle ou une capitulation déguisée."
+    },
+    {
+      "id": "ldr002",
+      "family": "leadership",
+      "mode": "behavioral",
+      "difficulty": "medium",
+      "text": "Tell me about a time you failed expectations of your colleague.",
+      "target_skills": [
+        "4.4",
+        "4.5"
+      ],
+      "notes": "Échec relationnel. Teste la responsabilité personnelle\n    et la distinction entre explication et excuse."
+    },
+    {
+      "id": "ldr003",
+      "family": "leadership",
+      "mode": "behavioral",
+      "difficulty": "medium",
+      "text": "Tell me about a successful product that you are proud of\n    from the recent company.",
+      "target_skills": [
+        "4.5"
+      ],
+      "notes": "Story de succès. Piège : manquer de précision sur la contribution personnelle.\n    L'interviewer veut savoir ce que TOI as fait, pas ce que l'équipe a livré."
+    },
+    {
+      "id": "ldr004",
+      "family": "leadership",
+      "mode": "behavioral",
+      "difficulty": "medium",
+      "text": "Tell me about a time you had to run a diagnostic on an issue\n    where you didn't have much data.",
+      "target_skills": [
+        "4.3",
+        "4.5"
+      ],
+      "notes": "Décision sous incertitude + résolution de problème.\n    Teste la structuration du raisonnement quand les données manquent."
+    },
+    {
+      "id": "ldr005",
+      "family": "leadership",
+      "mode": "behavioral",
+      "difficulty": "medium",
+      "text": "Walk me through a time at your latest company you overcame challenges\n    and how did you do that?",
+      "target_skills": [
+        "4.4",
+        "4.5"
+      ],
+      "notes": "Story de résilience. Teste la profondeur de l'apprentissage\n    et si le candidat peut articuler ce qu'il ferait différemment."
+    },
+    {
+      "id": "ldr006",
+      "family": "leadership",
+      "mode": "behavioral",
+      "difficulty": "medium",
+      "text": "Tell me an instance where your way of working created issues for your team.",
+      "target_skills": [
+        "4.4",
+        "4.5"
+      ],
+      "notes": "Autodiagnostic. Teste la lucidité sur ses propres angles morts.\n    Piège classique : fausse faiblesse qui se transforme en force."
+    },
+    {
+      "id": "ldr007",
+      "family": "leadership",
+      "mode": "behavioral",
+      "difficulty": "medium",
+      "text": "Tell me about a complicated project you worked on.",
+      "target_skills": [
+        "4.3",
+        "4.5"
+      ],
+      "notes": "Story ouverte. Teste la capacité à choisir la bonne story\n    et à la structurer avec un enjeu clair, des actions précises, un résultat mesurable."
+    },
+    {
+      "id": "ldr008",
+      "family": "leadership",
+      "mode": "behavioral",
+      "difficulty": "hard",
+      "text": "Tell me about a project when you discovered a problem, understand the requirements,\n    and build a product for it. What's the challenge of this project?",
+      "target_skills": [
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "notes": "Story multi-dimensionnelle. Combine problem discovery + execution + challenge.\n    Teste la cohérence narrative sur un arc complet."
+    },
+    {
+      "id": "ldr009",
+      "family": "leadership",
+      "mode": "behavioral",
+      "difficulty": "medium",
+      "text": "Walk me through your product discovery process for a consumer product.",
+      "target_skills": [
+        "4.5"
+      ],
+      "notes": "Question de process. Teste la clarté du raisonnement PM\n    et la capacité à articuler une méthode sans la réciter mécaniquement."
+    },
+    {
+      "id": "ldr010",
+      "family": "leadership",
+      "mode": "behavioral",
+      "difficulty": "medium",
+      "text": "Walk me through your decision-making process for a product feature launch.",
+      "target_skills": [
+        "4.3",
+        "4.5"
+      ],
+      "notes": "Process de décision. Teste la rigueur analytique\n    et la capacité à gérer l'incertitude dans un contexte de launch."
+    },
+    {
+      "id": "ldr011",
+      "family": "leadership",
+      "mode": "behavioral",
+      "difficulty": "medium",
+      "text": "How do you make trade-offs between profitability and user experience?",
+      "target_skills": [
+        "4.3",
+        "4.5"
+      ],
+      "notes": "Tradeoff structurel récurrent. Teste si le candidat a une position\n    défendable ou s'il hedges sans décider."
+    },
+    {
+      "id": "ldr012",
+      "family": "leadership",
+      "mode": "behavioral",
+      "difficulty": "medium",
+      "text": "If a deadlock occurs, how do you resolve it and align the team?",
+      "target_skills": [
+        "4.2",
+        "4.5"
+      ],
+      "notes": "Conflit et alignement. Teste la capacité à sortir d'une impasse\n    sans perdre l'adhésion des parties prenantes."
+    },
+    {
+      "id": "ldr013",
+      "family": "leadership",
+      "mode": "behavioral",
+      "difficulty": "medium",
+      "text": "How do you communicate a difficult tradeoff or decision to the broader team?",
+      "target_skills": [
+        "4.1",
+        "4.2",
+        "4.5"
+      ],
+      "notes": "Communication de décision difficile. Teste le storytelling structuré\n    et la capacité à maintenir la confiance même sur des décisions impopulaires."
+    },
+    {
+      "id": "ldr014",
+      "family": "leadership",
+      "mode": "behavioral",
+      "difficulty": "medium",
+      "text": "Tell me about a challenging business result you achieved that you are especially proud of.",
+      "target_skills": [
+        "4.5"
+      ],
+      "notes": "Story de succès business. Résultat doit être mesurable.\n    Piège : glorifier le résultat sans articuler la contribution personnelle précise."
+    },
+    {
+      "id": "ldr015",
+      "family": "leadership",
+      "mode": "behavioral",
+      "difficulty": "medium",
+      "text": "Tell me about a time a peer or manager gave you difficult feedback.",
+      "target_skills": [
+        "4.4",
+        "4.5"
+      ],
+      "notes": "Réception du feedback. Teste la maturité émotionnelle et la croissance réelle.\n    L'interviewer veut voir que le feedback a eu un impact concret sur le comportement."
+    },
+    {
+      "id": "ldr016",
+      "family": "leadership",
+      "mode": "behavioral",
+      "difficulty": "medium",
+      "text": "Tell me about a time you disagreed with a colleague and later found out you were wrong.",
+      "target_skills": [
+        "4.2",
+        "4.4",
+        "4.5"
+      ],
+      "notes": "Humilité intellectuelle. Rare et puissant. Teste la capacité à revenir\n    sur une position et à en tirer un apprentissage concret."
+    },
+    {
+      "id": "ldr017",
+      "family": "leadership",
+      "mode": "behavioral",
+      "difficulty": "medium",
+      "text": "Tell me about a time it was challenging to get support from others for an important initiative.",
+      "target_skills": [
+        "4.1",
+        "4.5"
+      ],
+      "notes": "Influence sans autorité sur une initiative stratégique.\n    Teste les leviers d'influence utilisés et leur efficacité réelle."
+    },
+    {
+      "id": "ldr018",
+      "family": "leadership",
+      "mode": "behavioral",
+      "difficulty": "medium",
+      "text": "Tell me about a time you changed your approach to get a project back on track.",
+      "target_skills": [
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "notes": "Adaptabilité + décision sous pression. Teste la lucidité sur le moment\n    où le pivot était nécessaire et pourquoi l'approche initiale ne fonctionnait pas."
+    },
+    {
+      "id": "ldr019",
+      "family": "leadership",
+      "mode": "behavioral",
+      "difficulty": "medium",
+      "text": "Tell me about a time you took ownership outside of your scope.",
+      "target_skills": [
+        "4.1",
+        "4.5"
+      ],
+      "notes": "Initiative et ownership. Teste si le candidat comprend la différence\n    entre prendre des responsabilités et empiéter sur le territoire des autres."
+    },
+    {
+      "id": "ldr020",
+      "family": "leadership",
+      "mode": "behavioral",
+      "difficulty": "medium",
+      "text": "Tell me about a time you and your team had a conflict with another team.",
+      "target_skills": [
+        "4.2",
+        "4.5"
+      ],
+      "notes": "Conflit inter-équipes. Teste la capacité à naviguer des tensions\n    organisationnelles sans escalade et en préservant les relations."
+    },
+    {
+      "id": "ldr021",
+      "family": "leadership",
+      "mode": "behavioral",
+      "difficulty": "medium",
+      "text": "Tell me about a time you didn't have all the resources to complete a deliverable.",
+      "target_skills": [
+        "4.3",
+        "4.5"
+      ],
+      "notes": "Contrainte de ressources. Teste la créativité dans la priorisation\n    et la capacité à livrer de la valeur malgré des contraintes réelles."
+    },
+    {
+      "id": "ldr022",
+      "family": "leadership",
+      "mode": "behavioral",
+      "difficulty": "medium",
+      "text": "Tell me about a time you had to make a time-sensitive decision with limited data.",
+      "target_skills": [
+        "4.3",
+        "4.5"
+      ],
+      "notes": "Décision urgente sous incertitude. Double contrainte : temps + données.\n    Teste le framework de décision et la confiance dans son propre jugement."
+    },
+    {
+      "id": "ldr023",
+      "family": "leadership",
+      "mode": "behavioral",
+      "difficulty": "medium",
+      "text": "Tell me about a time you worked with someone who didn't think they needed your help.",
+      "target_skills": [
+        "4.1",
+        "4.2",
+        "4.5"
+      ],
+      "notes": "Influence sur quelqu'un de résistant. Teste la subtilité de l'approche :\n    imposer vs créer les conditions pour que la personne accepte l'aide."
+    },
+    {
+      "id": "ldr024",
+      "family": "leadership",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "You are getting pressure from leadership to deliver a product that you think\n    is incomplete and want to hold back the launch. How do you proceed?",
+      "target_skills": [
+        "4.1",
+        "4.3"
+      ],
+      "notes": "Tension launch vs quality. Teste la capacité à quantifier le risque,\n    à construire un argument data-driven ET à maintenir la relation avec le leadership."
+    },
+    {
+      "id": "ldr025",
+      "family": "leadership",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "You are the PM of a product that has a number of intersecting features of an\n    end-to-end user journey. The UX is disjointed and it needs a complete overhaul.\n    How do you determine the strategy for sequencing the work?",
+      "target_skills": [
+        "4.3",
+        "4.1"
+      ],
+      "notes": "Priorisation d'une refonte complexe avec interdépendances.\n    Teste la capacité à séquencer intelligemment sans bloquer la delivery."
+    },
+    {
+      "id": "ldr026",
+      "family": "leadership",
+      "mode": "situational",
+      "difficulty": "hard",
+      "text": "In your team, someone thinks he or she is not a good fit? How will you handle the situation?",
+      "target_skills": [
+        "4.2",
+        "4.1"
+      ],
+      "notes": "Situation managériale délicate. Teste la capacité à aborder\n    une conversation difficile avec empathie et clarté, sans évitement."
+    },
+    {
+      "id": "ldr027",
+      "family": "leadership",
+      "mode": "situational",
+      "difficulty": "hard",
+      "text": "You are leading a project involving a number of your peers. You get feedback from an\n    engineering manager that one of the PMs on the project don't have clear requirements.\n    How to handle this:\n    1. Found out that a critical function on which your feature delivery is dependent is not\n       working at the expected pace.\n    2. Handle situation where your solution was criticized as something which was already tried\n       in the past and failed.\n    3. Define ideal workplace and colleagues for you.\n    4. Came across a colleague's actions that are not ethical.\n    5. Situation where your original plan and approach failed.",
+      "target_skills": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4"
+      ],
+      "notes": "Question multi-scénarios. À utiliser en session avancée uniquement.\n    Chaque sous-question peut devenir une question standalone. Richesse de matière pour le coaching."
+    }
+  ]
+}

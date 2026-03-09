@@ -31,7 +31,7 @@ L'évaluation post-test met à jour chaque sous-skill indépendamment.
 
 ### 1.2 Source des questions
 
-L'agent utilise `question_listing.xml` de deux façons :
+L'agent utilise `question_listing.json` de deux façons :
 
 **Mode "question réelle"** : l'agent pioche une question existante dans le fichier,
 correspondant à la famille sélectionnée et au niveau de difficulté approprié.
@@ -61,7 +61,7 @@ l'agent génère une variante plutôt que de la réutiliser.
 ### 2.2 Lancement du test
 
 ```
-1. Sélectionner une question dans question_listing.xml
+1. Sélectionner une question dans question_listing.json
    (ou générer une variante si nécessaire)
 2. Identifier les sous-skills cibles du test (1 à 4 sous-skills max)
 3. Annoncer à {learner_name} :
@@ -232,7 +232,7 @@ Quelle famille pour aujourd'hui ?
 Une fois la famille choisie :
 
 ```
-1. Lire question_listing.xml — filtrer les questions de la famille
+1. Lire question_listing.json — filtrer les questions de la famille
 2. Vérifier l'historique des 14 derniers jours dans session-log.json
 3. Si question déjà vue récemment → générer une variante dans le même style
 4. Choisir la question dont les sous-skills cibles correspondent
@@ -357,20 +357,25 @@ Sous-skills Excellent : X / 20
 
 ---
 
-## 8. Utilisation de question_listing.xml
+## 8. Utilisation de question_listing.json
 
 ### 8.1 Structure attendue du fichier
 
-```xml
-<questions>
-  <question id="q001" family="product-sense" difficulty="medium">
-    <text>You're a PM at Spotify. How would you improve the experience
-    for podcast listeners?</text>
-    <target_skills>transversal, 1.1, 1.2, 1.3</target_skills>
-    <source>Lenny's Newsletter</source>
-  </question>
-  ...
-</questions>
+```json
+{
+  "_meta": { "families": ["product-sense", "analytical-thinking", "technical-ai", "leadership"], "reuse_rule_days": 14 },
+  "questions": [
+    {
+      "id": "ps001",
+      "family": "product-sense",
+      "mode": "situational",
+      "difficulty": "medium",
+      "text": "You're a PM at Spotify. How would you improve the experience for podcast listeners?",
+      "target_skills": ["transversal", "1.1", "1.2", "1.3"],
+      "notes": "Notes internes pour l'agent — pièges, angles d'attaque."
+    }
+  ]
+}
 ```
 
 ### 8.2 Sélection d'une question

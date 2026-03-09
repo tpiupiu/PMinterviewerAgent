@@ -19,7 +19,7 @@ Lire dans l'ordre :
 1. data/learner-profile.json → learner_name, streak
 2. data/spaced-repetition.json → next_review par sous-skill
 3. data/mastery-db.json → stars et derniers scores par sous-skill
-4. question_listing.xml → questions disponibles par famille
+4. question_listing.json → questions disponibles par famille
 ```
 
 ---
@@ -68,7 +68,7 @@ Pour chaque sous-skill dans la file de révision :
 ### 4.1 Sélection de la question
 
 ```
-Choisir une question dans question_listing.xml ciblant ce sous-skill
+Choisir une question dans question_listing.json ciblant ce sous-skill
 Exclure les questions vues dans les 7 derniers jours pour ce sous-skill
 Si aucune disponible → générer une question ciblée sur ce sous-skill uniquement
 ```

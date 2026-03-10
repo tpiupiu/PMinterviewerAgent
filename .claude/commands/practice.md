@@ -101,7 +101,20 @@ Une fois la famille choisie :
 
 ## Étape 5 — Lancement du test + création de active-session.json
 
-Afficher la question :
+### Calcul du hint_level
+
+Avant d'afficher la question, calculer le **hint_level** à partir des stars des target_skills :
+
+```
+avg_stars = moyenne des stars des target_skills (depuis mastery-db.json)
+
+avg_stars 0–1  → hint_level = 3
+avg_stars 2    → hint_level = 2
+avg_stars 3–4  → hint_level = 1
+avg_stars 5    → hint_level = 0
+```
+
+### Affichage de la question
 
 ```
 [Famille choisie] — Test produit
@@ -127,7 +140,9 @@ Créer immédiatement data/active-session.json :
   "sections": [],
   "current_section": "plan",
   "completed_sections": [],
-  "exchanges": []
+  "exchanges": [],
+  "hint_level": "[hint_level calculé]",
+  "hints_remaining": "[hint_level calculé]"
 }
 ```
 
@@ -303,6 +318,68 @@ Vérifier milestones atteints (voir LEARNING_SYSTEM.md section 7)
 **6. Créer results/session-[date]-[famille].md** avec le feedback complet.
 
 **7. Supprimer data/active-session.json** — la session est terminée.
+
+---
+
+## Gestion des demandes d'indice
+
+Déclencheur : le candidat tape `hint`, `/hint`, ou une formulation équivalente ("un indice ?", "aide-moi").
+
+### Vérifier le budget d'indices
+
+Lire `hints_remaining` depuis data/active-session.json.
+
+**Si hint_level = 0 (5 stars sur les target_skills) :**
+```
+Tu as les outils — essaie sans indice.
+```
+Ne pas décrémenter, ne rien afficher d'autre.
+
+**Si hints_remaining = 0 (budget épuisé) :**
+```
+Tu as utilisé tous tes indices pour cette session. Lance-toi.
+```
+
+**Si hints_remaining > 0 :**
+
+### Générer l'indice contextuel
+
+L'indice doit être **adapté à la situation exacte** — lire depuis active-session.json :
+- `question_text` — la question posée
+- `current_section` — l'étape en cours (plan, segmentation, problem identification, etc.)
+- `target_skills` — les sous-skills évalués
+- `exchanges` — ce que le candidat a déjà dit dans la section en cours
+
+Croiser avec, selon la famille de la session :
+- **Famille 1 (Product Sense)** : `references/ben_erez_product_sense.md` en priorité, puis pm_skills.md + pm_references.md
+- **Famille 2 (Analytical Thinking)** : `references/ben_erez_analytical_thinking.md` en priorité, puis pm_skills.md
+- **Famille 3 (Technical AI)** : `references/amit_mutreja_technical_pm.md` en priorité, puis pm_skills.md
+- Dans tous les cas : les patterns de mistakes-db.json pour ce candidat (erreurs récurrentes)
+
+### Calibrage de l'indice selon hints_remaining
+
+Le niveau de détail augmente à mesure que hint_level est élevé (skills faibles = plus d'aide explicite) :
+
+| hints_remaining | Type d'indice | Niveau de détail |
+|---|---|---|
+| = hint_level (premier indice) | **Structurel** : les dimensions clés à couvrir pour cette section | Explicite si hint_level = 3 (nomme la structure, les étapes), plus vague si hint_level = 1 |
+| = hint_level - 1 (deuxième) | **Framework** : le framework ou l'angle qui s'applique ici, appliqué à la question concrète | Nomme le framework et montre comment l'appliquer à ce cas précis |
+| = 1 (dernier indice) | **Piège + ancrage** : l'erreur classique à éviter + un élément de la question non encore exploité | Direct et spécifique |
+
+### Format de l'indice
+
+```
+💡 Indice ([hints_remaining - 1] restant(s) après celui-ci) :
+[Indice contextuel — 2 à 4 phrases, adapté au niveau]
+```
+
+Règles de rédaction :
+- **hint_level 3 (0–1 stars)** : être explicite — nommer la structure, le framework, les étapes attendues, appliqués à la question
+- **hint_level 2 (2 stars)** : nommer le framework ou la dimension clé, sans dérouler les étapes
+- **hint_level 1 (3–4 stars)** : un seul signal ciblé, formulé comme une question ouverte
+- Toujours ancrer l'indice dans la question posée et la section en cours — jamais générique
+
+Après affichage : décrémenter `hints_remaining` dans active-session.json.
 
 ---
 

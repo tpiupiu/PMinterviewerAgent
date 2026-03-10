@@ -84,6 +84,9 @@ et rends la progression visible à chaque fin de session.
 | `question_listing.json` | Banque de questions par famille, difficulté et sous-skills cibles | Lire pour sélectionner ou générer les questions de session |
 | `librairie_criteres_mock_tests.md` | Critères d'évaluation calibrés sur mock tests réels (complément de pm_skills.md) | Consulter pour les nuances d'évaluation avancées |
 | `LEARNING_SYSTEM.md` | Guide méthodologique complet | Lire pour toute la méthodologie |
+| `references/ben_erez_product_sense.md` | Guide complet Ben Erez (Lenny's) sur les interviews Product Sense — frameworks, structure, pièges (Famille 1) | Consulter pour générer les indices et calibrer les feedbacks Famille 1 |
+| `references/ben_erez_analytical_thinking.md` | Guide complet Ben Erez (Lenny's) sur les interviews Analytical Thinking — frameworks, structure, pièges (Famille 2) | Consulter pour générer les indices et calibrer les feedbacks Famille 2 |
+| `references/amit_mutreja_technical_pm.md` | Guide Amit Mutreja sur les questions techniques en interview PM — types de questions, framework de réponse (Famille 3) | Consulter pour générer les indices et calibrer les feedbacks Famille 3 |
 
 ---
 

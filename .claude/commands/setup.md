@@ -77,7 +77,7 @@ Parfait. Voici ton profil :
 Je crée ton espace d'entraînement...
 ```
 
-Créer tous les fichiers dans `data/` (voir section Fichiers ci-dessous).
+Créer tous les fichiers `/data/` (voir section Fichiers ci-dessous).
 
 ```
 ✅ Profil créé
@@ -95,8 +95,6 @@ ou /progress pour voir ton tableau de bord de départ.
 
 ## Fichiers à créer
 
-Créer les fichiers dans `data/` directement avec les structures ci-dessous.
-
 ### `data/learner-profile.json`
 
 ```json
@@ -111,6 +109,8 @@ Créer les fichiers dans `data/` directement avec les structures ci-dessous.
   "cognitive_notes": ""
 }
 ```
+
+---
 
 ### `data/mastery-db.json`
 
@@ -142,6 +142,8 @@ Créer les fichiers dans `data/` directement avec les structures ci-dessous.
 }
 ```
 
+---
+
 ### `data/spaced-repetition.json`
 
 ```json
@@ -172,6 +174,8 @@ Créer les fichiers dans `data/` directement avec les structures ci-dessous.
 }
 ```
 
+---
+
 ### `data/progress-db.json`
 
 ```json
@@ -193,6 +197,8 @@ Créer les fichiers dans `data/` directement avec les structures ci-dessous.
 }
 ```
 
+---
+
 ### `data/mistakes-db.json`
 
 ```json
@@ -201,6 +207,8 @@ Créer les fichiers dans `data/` directement avec les structures ci-dessous.
   "patterns": []
 }
 ```
+
+---
 
 ### `data/session-log.json`
 
@@ -213,9 +221,100 @@ Créer les fichiers dans `data/` directement avec les structures ci-dessous.
 
 ---
 
+### `data/active-session.json`
+
+Ce fichier n'est **pas créé au setup** — il est créé dynamiquement par `/practice`
+et `/leadership` au moment où une session démarre (Étape 5 de ces commandes).
+
+Il est supprimé automatiquement à la fin de chaque session (après l'Étape 9).
+
+**Structure de référence — `/practice` :**
+
+```json
+{
+  "status": "in_progress",
+  "command": "practice",
+  "family": "product-sense",
+  "question_id": "ps001",
+  "question_text": "Texte exact de la question posée.",
+  "target_skills": ["transversal", "1.1", "1.2", "1.3"],
+  "session_start_time": "2026-03-10T14:00:00Z",
+  "plan_validated": false,
+  "sections": [],
+  "current_section": "plan",
+  "completed_sections": [],
+  "exchanges": [
+    {
+      "section": "plan",
+      "candidate_response": "Texte verbatim de la réponse du candidat.",
+      "agent_challenge": null,
+      "candidate_followup": null,
+      "section_status": "completed"
+    },
+    {
+      "section": "segmentation",
+      "candidate_response": "Texte verbatim de la réponse du candidat sur cette section.",
+      "agent_challenge": "Sur quel segment tu te concentres — et pourquoi pas les autres ?",
+      "candidate_followup": "Texte verbatim de la réponse du candidat à la relance.",
+      "section_status": "completed"
+    },
+    {
+      "section": "problem_identification",
+      "candidate_response": "Texte verbatim en cours — section non encore clôturée.",
+      "agent_challenge": null,
+      "candidate_followup": null,
+      "section_status": "in_progress"
+    }
+  ]
+}
+```
+
+**Structure de référence — `/leadership` :**
+
+```json
+{
+  "status": "in_progress",
+  "command": "leadership",
+  "family": "leadership",
+  "mode": "behavioral",
+  "question_id": "ldr001",
+  "question_text": "Texte exact de la question posée.",
+  "target_skills": ["4.1", "4.5"],
+  "session_start_time": "2026-03-10T14:00:00Z",
+  "current_section": "situation",
+  "completed_sections": [],
+  "exchanges": [
+    {
+      "section": "situation",
+      "candidate_response": "Texte verbatim de la réponse du candidat.",
+      "agent_challenge": "Quel était ton rôle spécifique dans ça ?",
+      "candidate_followup": "Texte verbatim de la réponse à la relance.",
+      "section_status": "completed"
+    },
+    {
+      "section": "actions",
+      "candidate_response": "Texte verbatim en cours.",
+      "agent_challenge": null,
+      "candidate_followup": null,
+      "section_status": "in_progress"
+    }
+  ]
+}
+```
+
+**Règles de mise à jour :**
+- `candidate_response` : toujours le texte **verbatim** complet — jamais résumé
+- `section_status` passe à `"completed"` quand le candidat clôt la section
+- La section `"in_progress"` est toujours la dernière entrée dans `exchanges[]`
+- Si la session est interrompue volontairement (`/practice` → "non" à la reprise) :
+  mettre `"status": "abandoned"` avant de supprimer
+
+---
+
 ## Notes d'implémentation
 
-- Remplir tous les champs `""` et `last_updated` avec la date ISO du jour au moment de la création
-- Créer le dossier `results/` (vide) pour les rapports de session à venir
+- Remplir tous les champs `""` et `last_updated` avec la date ISO du jour
+- Créer le dossier `/results/` (vide) pour les rapports de session à venir
+- Ne jamais créer `data/active-session.json` au setup — ce fichier est géré dynamiquement
 - Si la création d'un fichier échoue, le signaler et réessayer avant de conclure
 - Ne jamais afficher le JSON brut au candidat — uniquement les confirmations ✅

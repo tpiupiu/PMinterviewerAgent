@@ -1,5 +1,5 @@
 ---
-description: Adaptive mock interview session - Situational families (Product Sense, Analytical Thinking, Technical AI) — use /leadership for Family 4
+description: Adaptive mock interview session - Situational families (Product Sense, Analytical Thinking, Technical AI)
 allowed-tools: Read, Write
 ---
 
@@ -10,17 +10,38 @@ Lancer une session de mock interview situationnelle sur les familles 1, 2 ou 3.
 L'agent propose 3 options basées sur la priorité SM-2, le candidat choisit,
 l'agent conduit le test comme un vrai interviewer, puis délivre un feedback structuré.
 
+Pour la Famille 4 (Leadership / Behavioral), utiliser `/leadership`.
+
+---
 
 ## Étape 1 — Chargement des données
 
 ```
 Lire dans l'ordre :
-1. data/learner-profile.json → learner_name, streak
-2. data/mastery-db.json → scores actuels par sous-skill
-3. data/spaced-repetition.json → reviews dues aujourd'hui
-4. data/session-log.json → dernières sessions par famille
-5. question_listing.json → questions disponibles par famille
+1. data/active-session.json   → vérifier si une session est en cours (voir ci-dessous)
+2. data/learner-profile.json  → learner_name, streak
+3. data/mastery-db.json       → scores actuels par sous-skill
+4. data/spaced-repetition.json → reviews dues aujourd'hui
+5. data/session-log.json      → dernières sessions par famille
+6. question_listing.json      → questions disponibles par famille
 ```
+
+**Si data/active-session.json existe et status = "in_progress" :**
+
+```
+⚡ Session en cours détectée — [famille] — [question_id]
+
+Tu étais en train de répondre à :
+"[question_text]"
+
+Sections complétées : [completed_sections]
+Section en cours    : [current_section]
+
+Tu veux reprendre où tu t'étais arrêté(e) ? (oui / non)
+```
+
+- Si oui → reprendre depuis current_section, reconstruire le contexte depuis exchanges[]
+- Si non → supprimer data/active-session.json, repartir depuis Étape 2
 
 ---
 
@@ -76,57 +97,110 @@ Une fois la famille choisie :
    dans le style des questions existantes de cette famille
 ```
 
-Stocker en mémoire de session :
-- `question_id` (ou flag "variante générée")
-- `target_skills` : liste des sous-skills évalués dans ce test (2 à 4 max)
-- `session_start_time`
-
 ---
 
-## Étape 5 — Lancement du test
+## Étape 5 — Lancement du test + création de active-session.json
+
+Afficher la question :
 
 ```
 [Famille choisie] — Test produit
 
-Prends 5 à 10 minutes pour structurer ta réponse, puis écris-la complètement.
+Avant de commencer, présente ton plan : quelles sections vas-tu couvrir,
+dans quel ordre ? Je validerai avant que tu développes chaque section.
 
 [Question]
 ```
 
-Ne rien ajouter. Pas d'indice, pas de scaffold, pas de rappel de framework.
-Attendre la réponse complète du candidat.
+Créer immédiatement data/active-session.json :
+
+```json
+{
+  "status": "in_progress",
+  "command": "practice",
+  "family": "[famille]",
+  "question_id": "[id ou 'generated']",
+  "question_text": "[texte de la question]",
+  "target_skills": ["[liste]"],
+  "session_start_time": "[ISO timestamp]",
+  "plan_validated": false,
+  "sections": [],
+  "current_section": "plan",
+  "completed_sections": [],
+  "exchanges": []
+}
+```
+
+Ne rien ajouter après la question. Pas d'indice, pas de scaffold, pas de rappel de framework.
+Attendre la réponse du candidat.
 
 ---
 
-## Étape 6 — Phase d'interview interactive
+## Étape 6 — Flow section par section
 
-L'agent joue le rôle de l'interviewer. Il sort du mode coach.
+### 6a — Validation du plan
 
-**Règles absolues :**
-- Maximum 5 questions de relance — jamais plus
-- Clore le test dès que les target_skills sont suffisamment évalués
-- Rester neutre pendant l'interview — pas de validation, pas de "bien"
-- Les relances doivent sonner comme un vrai interviewer Senior PM
+Le candidat soumet son plan (liste des sections qu'il compte couvrir).
 
-**Types de relances selon ce qui manque :**
+L'agent valide sans donner d'indice sur les sections manquantes :
+```
+Plan noté. Lance-toi quand tu es prêt(e) — section par section.
+```
 
-| Signal détecté | Type de relance |
-|----------------|-----------------|
+Mettre à jour active-session.json :
+```json
+"plan_validated": true,
+"sections": ["[section 1]", "[section 2]", ...],
+"current_section": "[première section du plan]"
+```
+
+### 6b — Réponse section par section
+
+Pour chaque section que le candidat développe :
+
+**L'agent écoute sans interrompre.**
+Quand le candidat signale qu'il a terminé une section (ex: "voilà pour la segmentation",
+"je passe à la suite", ou question naturellement close) :
+
+1. L'agent évalue la section contre les critères pm_skills.md
+2. **Maximum 1 relance par section** — seulement si un signal fort manque :
+
+| Signal manquant | Relance |
+|-----------------|---------|
 | Segmentation floue | "Sur quel segment tu te concentres — et pourquoi pas les autres ?" |
 | Pas de priorisation | "Tu as listé 3 problèmes — lequel tu choisis et sur quelle base ?" |
 | Mission statement absent | "Comment tu définis le succès pour ce produit ?" |
-| Solution peu différenciée | "En quoi cette solution est spécifique à ce produit et pas générique ?" |
+| Solution peu différenciée | "En quoi cette solution est spécifique à ce produit ?" |
 | NSM sans critique | "Comment ce NSM pourrait-il être trompeur ?" |
-| Tradeoff sans décision | "Tu m'as donné les deux côtés — mais qu'est-ce que tu ferais, toi ?" |
-| Raisonnement technique superficiel | "Et si le retrieval retourne des documents non pertinents — que se passe-t-il ?" |
-| Guardrails absents | "Comment tu détectes que l'agent se comporte mal en production ?" |
+| Tradeoff sans décision | "Tu m'as donné les deux côtés — qu'est-ce que tu ferais, toi ?" |
 
-**Condition de clôture :**
-Quand les target_skills sont couverts OU après 5 relances :
+3. Si la section est suffisamment couverte → pas de relance, invitation à continuer :
+```
+Ok. Section suivante quand tu veux.
+```
 
+4. Après la relance (ou si pas de relance) → mettre à jour active-session.json :
+```json
+"completed_sections": ["[sections complétées]"],
+"current_section": "[section suivante]",
+"exchanges": [
+  {
+    "section": "[nom section]",
+    "candidate": "[réponse candidat résumée]",
+    "challenge": "[relance posée ou null]",
+    "candidate_followup": "[réponse à la relance ou null]"
+  }
+]
+```
+
+### 6c — Clôture du test
+
+Quand toutes les sections du plan sont couvertes :
 ```
 Ok, on a ce qu'il faut. Je prépare ton feedback.
 ```
+
+Mettre à jour active-session.json : `"status": "feedback_in_progress"`
 
 ---
 
@@ -137,6 +211,7 @@ Avant de rédiger le feedback, scorer chaque target_skill :
 ```
 Pour chaque sous-skill dans target_skills :
   - Relire les critères Weak / Good / Excellent dans pm_skills.md
+  - Prendre en compte l'ensemble des exchanges de la session (réponses + relances)
   - Attribuer un score : Weak / Good / Excellent
   - Identifier l'élément précis qui justifie ce score
   - Identifier le piège spécifique tombé (si applicable)
@@ -227,6 +302,8 @@ Vérifier milestones atteints (voir LEARNING_SYSTEM.md section 7)
 
 **6. Créer results/session-[date]-[famille].md** avec le feedback complet.
 
+**7. Supprimer data/active-session.json** — la session est terminée.
+
 ---
 
 ## Gestion des cas particuliers
@@ -240,8 +317,9 @@ Bien sûr — on travaille [famille demandée].
 **Le candidat veut arrêter en cours de session :**
 ```
 Session interrompue. Aucun score mis à jour pour cette session.
-Tape /practice pour recommencer quand tu veux.
+Le fichier de session est conservé — tape /practice pour reprendre quand tu veux.
 ```
+Ne pas supprimer active-session.json dans ce cas.
 
 **Aucune question disponible dans question_listing.json pour cette famille :**
 ```

@@ -84,6 +84,7 @@ Créer tous les fichiers `/data/` (voir section Fichiers ci-dessous).
 ✅ Base de progression initialisée (20 sous-skills à 0 étoile)
 ✅ Système de révision prêt
 ✅ Historique de sessions vide
+✅ Historique d'exposition aux questions prêt
 
 Tout est prêt, {learner_name}.
 
@@ -218,6 +219,20 @@ ou /progress pour voir ton tableau de bord de départ.
   "sessions": []
 }
 ```
+
+---
+
+### `data/question-history.json`
+
+```json
+{}
+```
+
+Fichier vide au démarrage. Il sera peuplé automatiquement par `/practice` au fil des sessions.
+Chaque entrée est indexée par l'ID de question et stocke :
+- `exposure_count` : nombre de fois que cette question a été présentée
+- `last_seen` : date ISO de la dernière exposition
+- `used_hints` : liste du nombre d'indices utilisés à chaque exposition
 
 ---
 

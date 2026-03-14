@@ -18,12 +18,13 @@ Pour la Famille 4 (Leadership / Behavioral), utiliser `/leadership`.
 
 ```
 Lire dans l'ordre :
-1. data/active-session.json   → vérifier si une session est en cours (voir ci-dessous)
-2. data/learner-profile.json  → learner_name, streak
-3. data/mastery-db.json       → scores actuels par sous-skill
-4. data/spaced-repetition.json → reviews dues aujourd'hui
-5. data/session-log.json      → dernières sessions par famille
-6. question_listing.json      → questions disponibles par famille
+1. data/active-session.json      → vérifier si une session est en cours (voir ci-dessous)
+2. data/learner-profile.json     → learner_name, streak
+3. data/mastery-db.json          → scores actuels par sous-skill
+4. data/spaced-repetition.json   → reviews dues aujourd'hui
+5. data/session-log.json         → dernières sessions par famille
+6. question_listing.json         → questions disponibles par famille
+7. data/question-history.json    → exposition par question ID (exposure_count, used_hints)
 ```
 
 **Si data/active-session.json existe et status = "in_progress" :**
@@ -90,34 +91,85 @@ Une fois la famille choisie :
 
 ```
 1. Filtrer question_listing.json par famille choisie
-2. Vérifier session-log.json — exclure les questions vues dans les 14 derniers jours
-3. Identifier les sous-skills cibles prioritaires (stars les plus basses de la famille)
-4. Choisir la question dont les target_skills correspondent à ces sous-skills
-5. Si aucune question disponible (toutes vues récemment) → générer une variante
-   dans le style des questions existantes de cette famille
+2. Identifier les sous-skills cibles prioritaires (stars les plus basses de la famille)
+   Calculer avg_stars = moyenne des stars de ces sous-skills cibles
+3. Filtrer par difficulté selon avg_stars :
+     avg_stars 0–1 → difficulty = "easy" uniquement
+     avg_stars 2–3 → difficulty = "easy" ou "medium"
+     avg_stars 4–5 → difficulty = "medium" ou "hard"
+4. Vérifier session-log.json — exclure les questions vues dans les 14 derniers jours
+5. Choisir la question dont les target_skills correspondent aux sous-skills cibles
+6. Si aucune question disponible à la difficulté cible (toutes vues récemment) →
+   relâcher le filtre difficulté d'un cran, puis générer une variante si toujours vide
+   (voir LEARNING_SYSTEM.md section 8.3)
 ```
 
 ---
 
 ## Étape 5 — Lancement du test + création de active-session.json
 
-### Calcul du hint_level
+### Calcul du scaffold_level et du hint_budget
 
-Avant d'afficher la question, calculer le **hint_level** à partir des stars des target_skills :
+Avant d'afficher la question, déterminer le niveau de guidage en combinant deux signaux :
 
+**Signal 1 — Exposition à la question** (depuis data/question-history.json) :
+```
+exposure_count = question-history[question_id].exposure_count  (0 si absent)
+
+exposure_count = 0      → scaffold_level = "full"    (première fois)
+exposure_count 1–2      → scaffold_level = "prompt"
+exposure_count 3–4      → scaffold_level = "minimal"
+exposure_count ≥ 5      → scaffold_level = "none"
+```
+
+**Signal 2 — Maîtrise du sous-skill** (hint_budget de base) :
 ```
 avg_stars = moyenne des stars des target_skills (depuis mastery-db.json)
 
-avg_stars 0–1  → hint_level = 3
-avg_stars 2    → hint_level = 2
-avg_stars 3–4  → hint_level = 1
-avg_stars 5    → hint_level = 0
+avg_stars 0–1  → hint_budget_base = 3
+avg_stars 2    → hint_budget_base = 2
+avg_stars 3–4  → hint_budget_base = 1
+avg_stars 5    → hint_budget_base = 0
 ```
 
-### Affichage de la question
-
+**Combinaison — hint_budget final** :
 ```
-[Famille choisie] — Test produit
+scaffold_level "full"    → hint_budget = hint_budget_base      (scaffold déjà fourni, indices restent disponibles)
+scaffold_level "prompt"  → hint_budget = min(hint_budget_base, 2)
+scaffold_level "minimal" → hint_budget = min(hint_budget_base, 1)
+scaffold_level "none"    → hint_budget = 0
+
+Règle de sécurité : si avg_stars ≤ 1, hint_budget = max(hint_budget, 1) — jamais zéro indice pour un skill très faible
+```
+
+### Affichage de la question selon scaffold_level
+
+**scaffold_level = "full"** (première fois que cette question est posée) :
+```
+[Famille] — Test produit
+
+Avant que tu commences, voici les dimensions clés à couvrir pour ce type de question :
+[Dimensions structurelles — 3 à 5 bullets, issues de pm_skills.md et de la référence de la famille]
+
+Présente ton plan quand tu es prêt(e) : quelles sections vas-tu couvrir, dans quel ordre ?
+
+[Question]
+```
+
+**scaffold_level = "prompt"** (2e ou 3e exposition) :
+```
+[Famille] — Test produit
+
+Tu veux un rappel de la structure à couvrir avant de commencer ? (oui / non)
+
+[Question]
+```
+→ Si "oui" : afficher les dimensions structurelles comme en "full", puis attendre le plan
+→ Si "non" : attendre directement le plan
+
+**scaffold_level = "minimal" ou "none"** :
+```
+[Famille] — Test produit
 
 Avant de commencer, présente ton plan : quelles sections vas-tu couvrir,
 dans quel ordre ? Je validerai avant que tu développes chaque section.
@@ -141,12 +193,14 @@ Créer immédiatement data/active-session.json :
   "current_section": "plan",
   "completed_sections": [],
   "exchanges": [],
-  "hint_level": "[hint_level calculé]",
-  "hints_remaining": "[hint_level calculé]"
+  "scaffold_level": "[scaffold_level calculé]",
+  "hint_budget": "[hint_budget calculé]",
+  "hints_remaining": "[hint_budget calculé]",
+  "hints_used": 0,
+  "question_exposure_count": "[exposure_count avant cette session]"
 }
 ```
 
-Ne rien ajouter après la question. Pas d'indice, pas de scaffold, pas de rappel de framework.
 Attendre la réponse du candidat.
 
 ---
@@ -315,9 +369,21 @@ Vérifier milestones atteints (voir LEARNING_SYSTEM.md section 7)
 }
 ```
 
-**6. Créer results/session-[date]-[famille].md** avec le feedback complet.
+**6. data/question-history.json** — mettre à jour l'exposition à la question :
+```
+Récupérer hints_used depuis active-session.json
+Si question_id existe dans question-history.json :
+  exposure_count + 1
+  last_seen = aujourd'hui
+  Ajouter hints_used à la liste used_hints
+Sinon (question jamais vue avant) :
+  Créer l'entrée : { "exposure_count": 1, "last_seen": "[date ISO]", "used_hints": [hints_used] }
+Si question_id = "generated" → ne pas enregistrer (questions générées non trackées)
+```
 
-**7. Supprimer data/active-session.json** — la session est terminée.
+**7. Créer results/session-[date]-[famille].md** avec le feedback complet.
+
+**8. Supprimer data/active-session.json** — la session est terminée.
 
 ---
 
@@ -327,9 +393,9 @@ Déclencheur : le candidat tape `hint`, `/hint`, ou une formulation équivalente
 
 ### Vérifier le budget d'indices
 
-Lire `hints_remaining` depuis data/active-session.json.
+Lire `hints_remaining` et `hint_budget` depuis data/active-session.json.
 
-**Si hint_level = 0 (5 stars sur les target_skills) :**
+**Si hint_budget = 0 (maîtrise élevée + exposition forte) :**
 ```
 Tu as les outils — essaie sans indice.
 ```
@@ -362,8 +428,8 @@ Le niveau de détail augmente à mesure que hint_level est élevé (skills faibl
 
 | hints_remaining | Type d'indice | Niveau de détail |
 |---|---|---|
-| = hint_level (premier indice) | **Structurel** : les dimensions clés à couvrir pour cette section | Explicite si hint_level = 3 (nomme la structure, les étapes), plus vague si hint_level = 1 |
-| = hint_level - 1 (deuxième) | **Framework** : le framework ou l'angle qui s'applique ici, appliqué à la question concrète | Nomme le framework et montre comment l'appliquer à ce cas précis |
+| = hint_budget (premier indice) | **Structurel** : les dimensions clés à couvrir pour cette section | Explicite si hint_budget = 3 (nomme la structure, les étapes), plus vague si hint_budget = 1 |
+| = hint_budget - 1 (deuxième) | **Framework** : le framework ou l'angle qui s'applique ici, appliqué à la question concrète | Nomme le framework et montre comment l'appliquer à ce cas précis |
 | = 1 (dernier indice) | **Piège + ancrage** : l'erreur classique à éviter + un élément de la question non encore exploité | Direct et spécifique |
 
 ### Format de l'indice
@@ -374,12 +440,12 @@ Le niveau de détail augmente à mesure que hint_level est élevé (skills faibl
 ```
 
 Règles de rédaction :
-- **hint_level 3 (0–1 stars)** : être explicite — nommer la structure, le framework, les étapes attendues, appliqués à la question
-- **hint_level 2 (2 stars)** : nommer le framework ou la dimension clé, sans dérouler les étapes
-- **hint_level 1 (3–4 stars)** : un seul signal ciblé, formulé comme une question ouverte
+- **hint_budget 3 (0–1 stars)** : être explicite — nommer la structure, le framework, les étapes attendues, appliqués à la question
+- **hint_budget 2 (2 stars)** : nommer le framework ou la dimension clé, sans dérouler les étapes
+- **hint_budget 1 (3–4 stars)** : un seul signal ciblé, formulé comme une question ouverte
 - Toujours ancrer l'indice dans la question posée et la section en cours — jamais générique
 
-Après affichage : décrémenter `hints_remaining` dans active-session.json.
+Après affichage : décrémenter `hints_remaining` et incrémenter `hints_used` dans active-session.json.
 
 ---
 
